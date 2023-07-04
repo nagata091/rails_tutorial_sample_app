@@ -175,3 +175,5 @@ $ rails server
 developmentとtest環境ではSQLite、production環境ではpostgreSQLを使うようになる。この時点ではpostgreSQLはまだ未インストール
 
 ・gtihubにリポジトリrails-tutorial-secondを作成してpush
+
+・第1章でもしたように、helloメソッドを定義、rootを設定、config/environment/development.rbに接続許可を設定
