@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampleApp</title>
+    <!-- yield(:title)に各ページの:titleで設定された値が代入される -->
+    <title><%= yield(:title) %> | サンプルアプリ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--文字セットを表すmetaタグ-->
+    <meta charset="utf-8">
+    <!--以下の3行は、スタイルシートとjavascriptをページ内にインクルードする(含める)ためのもの-->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +14,7 @@
   </head>
 
   <body>
+    <%= render "layouts/header" %>
     <%= yield %>
   </body>
 </html>

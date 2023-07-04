@@ -182,4 +182,24 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・rails g でコントローラ名「Static Pages」でHome、Helpページを作成
 
-・
+・新しいブランチstatic-pagesを作成し、そこにpush　$ git push --set-upstream origin static-pages　としないとできなかった
+
+・コントローラー作成をミスってもとに戻したいときは、$ rails destroy ~~~~　とすればOK
+
+・HomeページとHelpページをいろいろ修正
+
+・Aboutページを手動で作るに当たって、まずはテストを作成する
+
+・テストをパスするためにルーティング、コントローラーのメソッド、ビューを作成
+
+・各ページにページタイトルを表示させる作業をしていく
+
+・まずテストを作成　assert_select "title, "タイトル"
+
+・テストの最初にsetupメソッドを定義して重複を回避
+
+・application.html.erbファイルのタイトル、各ページにprovideメソッドを設定することでタイトルが動的に切り替わるように
+
+・演習：ルートを変更したことでroot_urlが利用できるようになった。これに対するテストを作成
+
+・ここまでを"Static Pages作成終了"とcommitしてpush

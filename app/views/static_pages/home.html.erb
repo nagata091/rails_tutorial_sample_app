@@ -1,2 +1,7 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<!-- ここで設定した:titleの値がprovideメソッドによってapplication.html.erbに代入される -->
+<% provide(:title, "Home") %>
+
+<h1>サンプルアプリだよ</h1>
+
+<p>ここはサンプルアプリのHomeページだよ。</p>
+<p><%= link_to "Railsチュートリアル", "https://railstutorial.jp/" %>に従って作成しているよ。</p>

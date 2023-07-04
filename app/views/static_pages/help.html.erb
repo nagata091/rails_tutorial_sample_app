@@ -1,2 +1,7 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<% provide(:title, "Help") %>
+
+<h1>サンプルアプリだよ</h1>
+
+<p>ここはサンプルアプリのHelpページだよ。</p>
+<p>Railsチュートリアルの<%= link_to "ヘルプページ", "https://railstutorial.jp/help" %>にいってね</p>
+<p>書籍もあるよ。<%= link_to "Ruby on Rails Tutorial", "https://railstutorial.jp/#book" %></p>
