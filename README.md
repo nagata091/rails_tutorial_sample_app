@@ -1,6 +1,6 @@
 # Railsチュートリアルでやったことを記述していく。
 
-<details><summary>第1章と第2章</summary><div>
+<details><summary>第1章</summary><div>
 
 ## 第1章　hello_app
 ・クラウドIDEで環境構築
@@ -65,6 +65,9 @@
 
 　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
 
+</div></details>
+
+<details><summary>第2章</summary><div>
 
 ## 第2章　toy_app
 
