@@ -122,4 +122,4 @@
 ・このとき、production環境でしか使わないgemはインストールしないように設定することで、
 developmentとtest環境ではSQLite、production環境ではpostgreSQLを使うようになる。この時点ではpostgreSQLはまだ未インストール
 
-・
+・gtihubにリポジトリrails-tutorial-secondを作成してpush
