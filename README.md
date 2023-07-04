@@ -1,7 +1,6 @@
 # Railsチュートリアルでやったことを記述していく。
 
-<detais>
-<summary>第1章と第2章</summary>
+<details><summary>第1章と第2章</summary><div>
 
 ## 第1章　hello_app
 ・クラウドIDEで環境構築
@@ -109,7 +108,7 @@
 
 ### ・toy_appの作成終了　push
 
-</details>
+</div></details>
 
 ## 第3章　sample_app 静的なページの作成
 
