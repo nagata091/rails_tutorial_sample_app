@@ -177,3 +177,9 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 ・gtihubにリポジトリrails-tutorial-secondを作成してpush
 
 ・第1章でもしたように、helloメソッドを定義、rootを設定、config/environment/development.rbに接続許可を設定
+
+・gemfileをロックし、ここまでをpush
+
+・rails g でコントローラ名「Static Pages」でHome、Helpページを作成
+
+・
