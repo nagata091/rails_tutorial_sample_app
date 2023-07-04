@@ -202,4 +202,4 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・演習：ルートを変更したことでroot_urlが利用できるようになった。これに対するテストを作成
 
-・ここまでを"Static Pages作成終了"とcommitしてpush
+・ここまでを"Static Pages作成終了"とcommitしてmainブランチにmergeし、push
