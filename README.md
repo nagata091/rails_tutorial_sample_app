@@ -203,3 +203,13 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 ・演習：ルートを変更したことでroot_urlが利用できるようになった。これに対するテストを作成
 
 ・ここまでを"Static Pages作成終了"とcommitしてmainブランチにmergeし、push
+
+・minitest reportersを導入
+
+・Guardによるテストの自動化を導入　ターミナルで $ bundle _2.3.14_ exec guard init を実行
+
+・生成されたGuardファイルを編集　編集後は新しいターミナルで $ bundle _2.3.14_ exec guard を実行しておけば自動でテストしてくれる
+
+・ここまでを"テストのセットアップ完了"でcommitしてpush
+
+・
