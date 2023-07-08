@@ -212,4 +212,8 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・ここまでを"テストのセットアップ完了"でcommitしてpush
 
-・
+・第4章でapplication_helperにタイトルを表示するヘルパーメソッドを追加
+
+・ヘルパーメソッドを追加したことをpush
+
+

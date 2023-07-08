@@ -12,7 +12,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     # アクセスに成功する
     assert_response :success
     # タイトルが"Home | サンプルアプリ"と表示される
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "homeページが表示される" do
@@ -21,7 +21,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     # アクセスに"成功"する　実際にはHTTPステータスが200 OKを表している
     assert_response :success
     # タイトルが"Home | サンプルアプリ"と表示される
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "helpページが表示される" do

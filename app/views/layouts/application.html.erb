@@ -2,7 +2,7 @@
 <html>
   <head>
     <!-- yield(:title)に各ページの:titleで設定された値が代入される -->
-    <title><%= yield(:title) %> | サンプルアプリ</title>
+    <title><%= full_titel(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!--文字セットを表すmetaタグ-->
     <meta charset="utf-8">
