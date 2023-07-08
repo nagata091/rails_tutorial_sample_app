@@ -1,6 +1,12 @@
-<header>
-  <%= link_to "Homeページ", static_pages_home_url %>
-  <%= link_to "Helpページ", static_pages_help_url %>
-  <%= link_to "Aboutページ", static_pages_about_url %>
-
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "sample app", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Homeページ", root_path %></li>
+        <li><%= link_to "Helpページ", help_path %></li>
+        <li><%= link_to "Log in", "#" %></li>
+      </ul>
+    </nav>
+  </div>
 </header>

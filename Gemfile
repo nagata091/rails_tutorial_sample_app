@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem "rails",           "7.0.4"
 # sassのc++実装のgemであり、コンパイルがsass-railsよりも速いと言われているもの　scssより効率的にcssを書くことができる　ネストとかできる
 gem "sassc-rails",     "2.1.2"
+# Twitterが作成したCSSフレームワーク
+gem "bootstrap-sass",  "3.4.1"
 # アセットファイルにアクセスするためのパスを管理する
 gem "sprockets-rails", "3.4.2"
 # javascriptモジュールをブラウザに直接インポートする　JSXみたいにコンパイルにステップが必要なものは利用できない

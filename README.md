@@ -5,43 +5,43 @@
 ## 第1章　hello_app
 ・クラウドIDEで環境構築
 
-・rvmを使ってruby3.1.2をインストール
+・rvmを使って`ruby3.1.2`をインストール
 
-　$ rvm get stable
+　`$ rvm get stable`
 
-　$ rvm install 3.1.2
+　`$ rvm install 3.1.2`
 
-　$ rvm --default use 3.1.2
+　`$ rvm --default use 3.1.2`
 
 ・railsをインストールする
 
-　rubyドキュメントをスキップする設定を.gemrcファイルに追加
+　rubyドキュメントをスキップする設定を`.gemrcファイル`に追加
 
-　$ echo "gem: --no-document" >> ~/.gemrc
+　`$ echo "gem: --no-document" >> ~/.gemrc`
 
-　rails7.0.4をインストール
+　`rails7.0.4`をインストール
 
-　$ gem install rails -v 7.0.4
+　`$ gem install rails -v 7.0.4`
 
-・bundler2.3.14をインストール
+・`bundler2.3.14`をインストール
 
-　$ gem install bundler -v 2.3.14
+　`$ gem install bundler -v 2.3.14`
 
 ・cloud9環境のディスク容量を追加する
 
-　$ source <(curl -sL https://cdn.learnenough.com/resize)
+　`$ source <(curl -sL https://cdn.learnenough.com/resize)``
 
-・~/environmentでhello_appという名前のrailsアプリを新規作成
+・`~/environment`で`hello_app`という名前のrailsアプリを新規作成
 
-　バージョンを指定　--skip-bundleコマンドを省略すると、システム上で見つかる最も直近のバージョンのbundlerが使われることになる
+　バージョンを指定　`--skip-bundle`コマンドを省略すると、システム上で見つかる最も直近のバージョンのbundlerが使われることになる
 
-　$ rails _ 7.0.4 _ new hello_app --skip-bundle
+　`$ rails _ 7.0.4 _ new hello_app --skip-bundle`
 
 ・Gemfileの中身を書き換え
 
-・config/environment/development.rbにクラウドIDEからrailsサーバーへ接続する許可を記述
+・`config/environment/development.rb`にクラウドIDEからrailsサーバーへ接続する許可を記述
 
-　config.hosts.clear
+　`config.hosts.clear`
 
 ・railsサーバーを起動、初期画面が表示されることを確認
 
@@ -49,21 +49,23 @@
 
 　ブラウザからのリクエストをcontrollerが受け取り、model(データベースとの通信を担当)を対話して呼び出し、viewをレンダリングしてHTMLをブラウザに返す
 
-・application_controllerにhelloメソッドを定義
+・`application_controller`にhelloメソッドを定義
 
-・config/routesでhelloメソッドで表示されるHTMLをrootに設定
+・`config/routes`でhelloメソッドで表示されるHTMLをrootに設定
 
-・localhost:3000でhelloメソッドで定義したHTMLが表示されることを確認
+・`localhost:3000`でhelloメソッドで定義したHTMLが表示されることを確認
 
 ・クラウドIDEのgitバージョンが2.17.1であったのでアップグレード　2.41.0に
 
-　$ source <(curl -sL https://cdn.learnenough.com/upgrade_git)
+　`$ source <(curl -sL https://cdn.learnenough.com/upgrade_git)``
 
 ### ・githubにリポジトリhello_app-secondを作成してプッシュ
 
 　↓個人アクセストークン
 
+```
 　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
+```
 
 </div></details>
 
@@ -71,33 +73,33 @@
 
 ## 第2章　toy_app
 
-・rails new で toy_app を作成
+・`rails new` で`toy_app`を作成
 
-・gemfileを書き換えて bundle install　第1章で作ったものに加え、"sassc-rails"をインストール
+・gemfileを書き換えて`bundle install`第1章で作ったものに加え、"sassc-rails"をインストール
 
-・第1章でもしたように、helloメソッドを定義、rootを設定、config/environment/development.rbに接続許可を設定
+・第1章でもしたように、helloメソッドを定義、rootを設定、`config/environment/development.rb`に接続許可を設定
 
 ・railsサーバーを起動し、無事起動することを確認
 
 ### ・gtihubのリポジトリtoy_ app_secondを作成してpush
 
-・scaffoldコマンドでUsersモデルを作成　カラムはname:stringとemail:string
+・scaffoldコマンドでUsersモデルを作成　カラムは`name:string`と`email:string`
 
 ・作ったデータベースをマイグレート
 
 ・scaffoldで作成したので、URLが~/usersに新しくページが自動で作成されていることを確認
 
-・rootページをusers/indexに変更
+・rootページを`users/index`に変更
 
 ・scaffoldはいろんなページを一気に作成してくれるので便利だが、データの検証やテストが行われていないなどの問題点が多々ある。
 
-・Micropostモデルを作成　カラムはcontent:textとuser_id:integer
+・Micropostモデルを作成　カラムは`content:text`と`user_id:integer`
 
-・models/micropost.rb に投稿のバリデーションを作成　投稿を140字に制限
+・`models/micropost.rb`に投稿のバリデーションを作成　投稿を140字に制限
 
-・models/user.rb にuser一人に複数のmicropostが紐づくように設定　has_many :microposts
+・`models/user.rb`にuser一人に複数のmicropostが紐づくように設定　`has_many :microposts`
 
-・models/micropost.rb にmicropost一つにuser一人が紐づくように設定　belongs_to :user
+・`models/micropost.rb`にmicropost一つにuser一人が紐づくように設定　`belongs_to :user`
 
 ・railsコンドールで紐づけがちゃんとできているか確認
 
@@ -167,7 +169,7 @@ $ rails server
 
 ・sample_appを新しく作成
 
-・--skip-bundleによってjavascriptを使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
+・`--skip-bundle`によってjavascriptを使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
 
 ・gemfileを書き換え、bundleインストール
 
@@ -176,15 +178,15 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・gtihubにリポジトリrails-tutorial-secondを作成してpush
 
-・第1章でもしたように、helloメソッドを定義、rootを設定、config/environment/development.rbに接続許可を設定
+・第1章でもしたように、helloメソッドを定義、rootを設定、`config/environment/development.rb`に接続許可を設定
 
 ・gemfileをロックし、ここまでをpush
 
 ・rails g でコントローラ名「Static Pages」でHome、Helpページを作成
 
-・新しいブランチstatic-pagesを作成し、そこにpush　$ git push --set-upstream origin static-pages　としないとできなかった
+・新しいブランチstatic-pagesを作成し、そこにpush　`$ git push --set-upstream origin static-pages`としないとできなかった
 
-・コントローラー作成をミスってもとに戻したいときは、$ rails destroy ~~~~　とすればOK
+・コントローラー作成をミスってもとに戻したいときは、`$ rails destroy ~~~~`とすればOK
 
 ・HomeページとHelpページをいろいろ修正
 
@@ -194,11 +196,11 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・各ページにページタイトルを表示させる作業をしていく
 
-・まずテストを作成　assert_select "title, "タイトル"
+・まずテストを作成`assert_select "title, "タイトル"``
 
 ・テストの最初にsetupメソッドを定義して重複を回避
 
-・application.html.erbファイルのタイトル、各ページにprovideメソッドを設定することでタイトルが動的に切り替わるように
+・`application.html.erbファイル`のタイトル、各ページにprovideメソッドを設定することでタイトルが動的に切り替わるように
 
 ・演習：ルートを変更したことでroot_urlが利用できるようになった。これに対するテストを作成
 
@@ -206,9 +208,9 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・minitest reportersを導入
 
-・Guardによるテストの自動化を導入　ターミナルで $ bundle _2.3.14_ exec guard init を実行
+・Guardによるテストの自動化を導入　ターミナルで `$ bundle _2.3.14_ exec guard init` を実行
 
-・生成されたGuardファイルを編集　編集後は新しいターミナルで $ bundle _2.3.14_ exec guard を実行しておけば自動でテストしてくれる
+・生成されたGuardファイルを編集　編集後は新しいターミナルで `$ bundle _2.3.14_ exec guard` を実行しておけば自動でテストしてくれる
 
 ・ここまでを"テストのセットアップ完了"でcommitしてpush
 
@@ -216,4 +218,24 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・ヘルパーメソッドを追加したことをpush
 
+## 第5章　レイアウトを作成する
 
+・git branchを作成　`filling-in-layout`
+
+・ヘッダー、homeのhtmlを編集
+
+・bootstrapをインストールする
+
+・すべてのCSSを一つにまとめるため、カスタムCSSファイルを作成
+
+・フッターのhtmlを編集
+
+・ヘッダーとフッターのCSSを追加
+
+・コンタクトページを追加
+
+・各ページの名前付きルーティングを定義　テストを名前付きルーティングに書き換え
+
+・結合テスト(integration_test)を作成 `$ rails g integration-test site-layout`
+
+・ここまでをpush
