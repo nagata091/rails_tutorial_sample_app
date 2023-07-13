@@ -239,3 +239,9 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 ・結合テスト(integration_test)を作成 `$ rails g integration-test site-layout`
 
 ・ここまでをpush
+
+・static_pagesの各ページの文章を修正
+
+・Applicationヘルパーで使っているfull_titleメソッドのテストを作成
+
+・ここまでをpush
