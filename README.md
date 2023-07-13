@@ -245,3 +245,10 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 ・Applicationヘルパーで使っているfull_titleメソッドのテストを作成
 
 ・ここまでをpush
+
+・ユーザー登録ページへのルーティングを作成していく
+
+・Usersコントローラーを作成、newをSign upページとして作成
+
+・
+

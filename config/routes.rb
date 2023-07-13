@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'user/new'
   root "static_pages#home"
   # get 'static_pages/home' homeページはrootに設定したので削除
   # 各ページでhelp_pathやhelp_urlが使えるように書き換え
@@ -9,4 +8,5 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about"
   # get "static_pages/contact"
   get "/contact", to: "static_pages#contact"
+  get "/signup", to: "users#new"
 end
