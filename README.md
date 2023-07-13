@@ -115,6 +115,8 @@
 
 </div></details>
 
+<details><summary>第3章</summary><div>
+
 ## 第3章　sample_app 静的なページの作成
 
 <details><summary>サンプルアプリケーションについての説明</summary><div>
@@ -218,6 +220,10 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・ヘルパーメソッドを追加したことをpush
 
+</div></details>
+
+<details><summary>第5章</summary><div>
+
 ## 第5章　レイアウトを作成する
 
 ・git branchを作成　`filling-in-layout`
@@ -251,4 +257,38 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 ・Usersコントローラーを作成、newをSign upページとして作成
 
 ・ここまでをpush
+
+</div></details>
+
+<details><summary>第6章</summary><div>
+
+## 第6章　ユーザーのモデルを作成する
+
+・ここから第12章まで、ユーザー認証システムを構築していく
+
+・トピックブランチを作成 `$ git switch -c modeling-users`
+
+・簡単に消えることのないユーザーモデルを構築する
+
+・`$ rails g model User name:string email:string`でUserモデルを生成、マイグレーション
+
+・ユーザーの検証のため、存在性（presence）、長さ（length）、フォーマット（format）、一意性（uniqueness）の検証をする
+
+・name属性とemail属性の存在性のテストとバリデーションを作成
+
+・name属性とemail属性の長さのテストとバリデーションを作成
+
+・email属性のフォーマットのテストとバリデーションを作成
+
+・email属性の一意性のテストとバリデーションを作成
+
+・データベースレベルの一意性を保証するために、emailインデックスをマイグレーションに追加する `$ rails g migration add_index_to_users_email`
+
+・生成されたマイグレーションファイルに次を追記 `add_index :users, :email, unique: true`
+
+・`test/fixtures/users.yml` の中身をいったん削除するとテストがパスするようになる
+
+・コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
+
+・ここまでをコミットしてpush
 
