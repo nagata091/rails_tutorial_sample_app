@@ -1,67 +1,68 @@
-# Railsチュートリアルでやったことを記述していく。
+# Rails チュートリアルでやったことを記述していく。
 
 <details><summary>第1章</summary><div>
 
-## 第1章　hello_app
-・クラウドIDEで環境構築
+## 第 1 章　 hello_app
 
-・rvmを使って`ruby3.1.2`をインストール
+・クラウド IDE で環境構築
 
-　`$ rvm get stable`
+・rvm を使って`ruby3.1.2`をインストール
 
-　`$ rvm install 3.1.2`
+`$ rvm get stable`
 
-　`$ rvm --default use 3.1.2`
+`$ rvm install 3.1.2`
 
-・railsをインストールする
+`$ rvm --default use 3.1.2`
 
-　rubyドキュメントをスキップする設定を`.gemrcファイル`に追加
+・rails をインストールする
 
-　`$ echo "gem: --no-document" >> ~/.gemrc`
+ruby ドキュメントをスキップする設定を`.gemrcファイル`に追加
 
-　`rails7.0.4`をインストール
+`$ echo "gem: --no-document" >> ~/.gemrc`
 
-　`$ gem install rails -v 7.0.4`
+`rails7.0.4`をインストール
+
+`$ gem install rails -v 7.0.4`
 
 ・`bundler2.3.14`をインストール
 
-　`$ gem install bundler -v 2.3.14`
+`$ gem install bundler -v 2.3.14`
 
-・cloud9環境のディスク容量を追加する
+・cloud9 環境のディスク容量を追加する
 
-　`$ source <(curl -sL https://cdn.learnenough.com/resize)``
+`$ source <(curl -sL https://cdn.learnenough.com/resize)``
 
-・`~/environment`で`hello_app`という名前のrailsアプリを新規作成
+・`~/environment`で`hello_app`という名前の rails アプリを新規作成
 
-　バージョンを指定　`--skip-bundle`コマンドを省略すると、システム上で見つかる最も直近のバージョンのbundlerが使われることになる
+バージョンを指定　`--skip-bundle`コマンドを省略すると、システム上で見つかる最も直近のバージョンの bundler が使われることになる
 
-　`$ rails _ 7.0.4 _ new hello_app --skip-bundle`
+`$ rails _ 7.0.4 _ new hello_app --skip-bundle`
 
-・Gemfileの中身を書き換え
+・Gemfile の中身を書き換え
 
-・`config/environment/development.rb`にクラウドIDEからrailsサーバーへ接続する許可を記述
+・`config/environment/development.rb`にクラウド IDE から rails サーバーへ接続する許可を記述
 
-　`config.hosts.clear`
+`config.hosts.clear`
 
-・railsサーバーを起動、初期画面が表示されることを確認
+・rails サーバーを起動、初期画面が表示されることを確認
 
 ・MVC(model-view-controller)
 
-　ブラウザからのリクエストをcontrollerが受け取り、model(データベースとの通信を担当)を対話して呼び出し、viewをレンダリングしてHTMLをブラウザに返す
+ブラウザからのリクエストを controller が受け取り、model(データベースとの通信を担当)を対話して呼び出し、view をレンダリングして HTML をブラウザに返す
 
-・`application_controller`にhelloメソッドを定義
+・`application_controller`に hello メソッドを定義
 
-・`config/routes`でhelloメソッドで表示されるHTMLをrootに設定
+・`config/routes`で hello メソッドで表示される HTML を root に設定
 
-・`localhost:3000`でhelloメソッドで定義したHTMLが表示されることを確認
+・`localhost:3000`で hello メソッドで定義した HTML が表示されることを確認
 
-・クラウドIDEのgitバージョンが2.17.1であったのでアップグレード　2.41.0に
+・クラウド IDE の git バージョンが 2.17.1 であったのでアップグレード　 2.41.0 に
 
-　`$ source <(curl -sL https://cdn.learnenough.com/upgrade_git)``
+`$ source <(curl -sL https://cdn.learnenough.com/upgrade_git)``
 
-### ・githubにリポジトリhello_app-secondを作成してプッシュ
+### ・github にリポジトリ hello_app-second を作成してプッシュ
 
-　↓個人アクセストークン
+↓ 個人アクセストークン
 
 ```
 　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
@@ -71,65 +72,65 @@
 
 <details><summary>第2章</summary><div>
 
-## 第2章　toy_app
+## 第 2 章　 toy_app
 
 ・`rails new` で`toy_app`を作成
 
-・gemfileを書き換えて`bundle install`第1章で作ったものに加え、"sassc-rails"をインストール
+・gemfile を書き換えて`bundle install`第 1 章で作ったものに加え、"sassc-rails"をインストール
 
-・第1章でもしたように、helloメソッドを定義、rootを設定、`config/environment/development.rb`に接続許可を設定
+・第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
 
-・railsサーバーを起動し、無事起動することを確認
+・rails サーバーを起動し、無事起動することを確認
 
-### ・gtihubのリポジトリtoy_ app_secondを作成してpush
+### ・gtihub のリポジトリ toy\_ app_second を作成して push
 
-・scaffoldコマンドでUsersモデルを作成　カラムは`name:string`と`email:string`
+・scaffold コマンドで Users モデルを作成　カラムは`name:string`と`email:string`
 
 ・作ったデータベースをマイグレート
 
-・scaffoldで作成したので、URLが~/usersに新しくページが自動で作成されていることを確認
+・scaffold で作成したので、URL が~/users に新しくページが自動で作成されていることを確認
 
-・rootページを`users/index`に変更
+・root ページを`users/index`に変更
 
-・scaffoldはいろんなページを一気に作成してくれるので便利だが、データの検証やテストが行われていないなどの問題点が多々ある。
+・scaffold はいろんなページを一気に作成してくれるので便利だが、データの検証やテストが行われていないなどの問題点が多々ある。
 
-・Micropostモデルを作成　カラムは`content:text`と`user_id:integer`
+・Micropost モデルを作成　カラムは`content:text`と`user_id:integer`
 
-・`models/micropost.rb`に投稿のバリデーションを作成　投稿を140字に制限
+・`models/micropost.rb`に投稿のバリデーションを作成　投稿を 140 字に制限
 
-・`models/user.rb`にuser一人に複数のmicropostが紐づくように設定　`has_many :microposts`
+・`models/user.rb`に user 一人に複数の micropost が紐づくように設定　`has_many :microposts`
 
-・`models/micropost.rb`にmicropost一つにuser一人が紐づくように設定　`belongs_to :user`
+・`models/micropost.rb`に micropost 一つに user 一人が紐づくように設定　`belongs_to :user`
 
-・railsコンドールで紐づけがちゃんとできているか確認
+・rails コンドールで紐づけがちゃんとできているか確認
 
-・演習：ユーザーのshowページに、ユーザーの最初の投稿を表示させる
+・演習：ユーザーの show ページに、ユーザーの最初の投稿を表示させる
 
 ・演習：投稿のバリデーションを追加　空白だとエラーを返すように
 
-・演習：Userモデルにバリデーションを追加　nameとemailが空白のときにエラーを返す
+・演習：User モデルにバリデーションを追加　 name と email が空白のときにエラーを返す
 
 ・ユーザーと投稿のページの行ったり来たりが面倒だったのでヘッダーに各一覧へのリンクを設置
 
-### ・toy_appの作成終了　push
+### ・toy_app の作成終了　 push
 
 </div></details>
 
-## 第3章　sample_app 静的なページの作成
+## 第 3 章　 sample_app 静的なページの作成
 
 <details><summary>サンプルアプリケーションについての説明</summary><div>
 
 # Ruby on Rails チュートリアルのサンプルアプリケーション
 
 これは、次の教材で作られたサンプルアプリケーションです。
-[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
-（第7版）
+[_Ruby on Rails チュートリアル_](https://railstutorial.jp/)
+（第 7 版）
 [Michael Hartl](https://www.michaelhartl.com/) 著
 
 ## ライセンス
 
 [Ruby on Rails チュートリアル](https://railstutorial.jp/)内にある
-ソースコードはMITライセンスとBeerwareライセンスのもとで公開されています。
+ソースコードは MIT ライセンスと Beerware ライセンスのもとで公開されています。
 詳細は [LICENSE.md](LICENSE.md) をご覧ください。
 
 ## 使い方
@@ -155,42 +156,41 @@ $ rails db:migrate
 $ rails test
 ```
 
-テストが無事にパスしたら、Railsサーバーを立ち上げる準備が整っているはずです。
+テストが無事にパスしたら、Rails サーバーを立ち上げる準備が整っているはずです。
 
 ```
 $ rails server
 ```
 
-詳しくは、[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+詳しくは、[_Ruby on Rails チュートリアル_](https://railstutorial.jp/)
 を参考にしてください。
-
 
 </div></details>
 
-・sample_appを新しく作成
+・sample_app を新しく作成
 
-・`--skip-bundle`によってjavascriptを使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
+・`--skip-bundle`によって javascript を使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
 
-・gemfileを書き換え、bundleインストール
+・gemfile を書き換え、bundle インストール
 
-・このとき、production環境でしか使わないgemはインストールしないように設定することで、
-developmentとtest環境ではSQLite、production環境ではpostgreSQLを使うようになる。この時点ではpostgreSQLはまだ未インストール
+・このとき、production 環境でしか使わない gem はインストールしないように設定することで、
+development と test 環境では SQLite、production 環境では postgreSQL を使うようになる。この時点では postgreSQL はまだ未インストール
 
-・gtihubにリポジトリrails-tutorial-secondを作成してpush
+・gtihub にリポジトリ rails-tutorial-second を作成して push
 
-・第1章でもしたように、helloメソッドを定義、rootを設定、`config/environment/development.rb`に接続許可を設定
+・第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
 
-・gemfileをロックし、ここまでをpush
+・gemfile をロックし、ここまでを push
 
-・rails g でコントローラ名「Static Pages」でHome、Helpページを作成
+・rails g でコントローラ名「Static Pages」で Home、Help ページを作成
 
-・新しいブランチstatic-pagesを作成し、そこにpush　`$ git push --set-upstream origin static-pages`としないとできなかった
+・新しいブランチ static-pages を作成し、そこに push 　`$ git push --set-upstream origin static-pages`としないとできなかった
 
-・コントローラー作成をミスってもとに戻したいときは、`$ rails destroy ~~~~`とすればOK
+・コントローラー作成をミスってもとに戻したいときは、`$ rails destroy ~~~~`とすれば OK
 
-・HomeページとHelpページをいろいろ修正
+・Home ページと Help ページをいろいろ修正
 
-・Aboutページを手動で作るに当たって、まずはテストを作成する
+・About ページを手動で作るに当たって、まずはテストを作成する
 
 ・テストをパスするためにルーティング、コントローラーのメソッド、ビューを作成
 
@@ -198,39 +198,39 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・まずテストを作成`assert_select "title, "タイトル"``
 
-・テストの最初にsetupメソッドを定義して重複を回避
+・テストの最初に setup メソッドを定義して重複を回避
 
-・`application.html.erbファイル`のタイトル、各ページにprovideメソッドを設定することでタイトルが動的に切り替わるように
+・`application.html.erbファイル`のタイトル、各ページに provide メソッドを設定することでタイトルが動的に切り替わるように
 
-・演習：ルートを変更したことでroot_urlが利用できるようになった。これに対するテストを作成
+・演習：ルートを変更したことで root_url が利用できるようになった。これに対するテストを作成
 
-・ここまでを"Static Pages作成終了"とcommitしてmainブランチにmergeし、push
+・ここまでを"Static Pages 作成終了"と commit して main ブランチに merge し、push
 
-・minitest reportersを導入
+・minitest reporters を導入
 
-・Guardによるテストの自動化を導入　ターミナルで `$ bundle _2.3.14_ exec guard init` を実行
+・Guard によるテストの自動化を導入　ターミナルで `$ bundle _2.3.14_ exec guard init` を実行
 
-・生成されたGuardファイルを編集　編集後は新しいターミナルで `$ bundle _2.3.14_ exec guard` を実行しておけば自動でテストしてくれる
+・生成された Guard ファイルを編集　編集後は新しいターミナルで `$ bundle _2.3.14_ exec guard` を実行しておけば自動でテストしてくれる
 
-・ここまでを"テストのセットアップ完了"でcommitしてpush
+・ここまでを"テストのセットアップ完了"で commit して push
 
-・第4章でapplication_helperにタイトルを表示するヘルパーメソッドを追加
+・第 4 章で application_helper にタイトルを表示するヘルパーメソッドを追加
 
-・ヘルパーメソッドを追加したことをpush
+・ヘルパーメソッドを追加したことを push
 
-## 第5章　レイアウトを作成する
+## 第 5 章　レイアウトを作成する
 
-・git branchを作成　`filling-in-layout`
+・git branch を作成　`filling-in-layout`
 
-・ヘッダー、homeのhtmlを編集
+・ヘッダー、home の html を編集
 
-・bootstrapをインストールする
+・bootstrap をインストールする
 
-・すべてのCSSを一つにまとめるため、カスタムCSSファイルを作成
+・すべての CSS を一つにまとめるため、カスタム CSS ファイルを作成
 
-・フッターのhtmlを編集
+・フッターの html を編集
 
-・ヘッダーとフッターのCSSを追加
+・ヘッダーとフッターの CSS を追加
 
 ・コンタクトページを追加
 
@@ -238,17 +238,18 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・結合テスト(integration_test)を作成 `$ rails g integration-test site-layout`
 
-・ここまでをpush
+・ここまでを push
 
-・static_pagesの各ページの文章を修正
+・static_pages の各ページの文章を修正
 
-・Applicationヘルパーで使っているfull_titleメソッドのテストを作成
+・Application ヘルパーで使っている full_title メソッドのテストを作成
 
-・ここまでをcommit
+・ここまでを commit
 
 ・ユーザー登録ページへのルーティングを作成していく
 
-・Usersコントローラーを作成、newをSign upページとして作成
+・Users コントローラーを作成、new を Sign up ページとして作成
 
-・ここまでをpush
+・ここまでを push
 
+・PR のテスト
