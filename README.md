@@ -292,3 +292,32 @@ developmentとtest環境ではSQLite、production環境ではpostgreSQLを使う
 
 ・ここまでをコミットしてpush
 
+・セキュアなパスワードを追加する
+
+・セキュアなパスワードを実装するには`has_secure_password`をユーザーモデルに追記すればよい
+
+・`has_secure_password`を追記することによって、さまざまな機能が使えるようになる
+
+・機能を使うために、Userモデルに`password_digest`カラムを作成する
+
+・`$ rails g migration add_password_digest_to_users password_digest:string`でマイグレーションファイルを作成
+
+・`$ rails db:migrate`でマイグレーションを適用
+
+・`Gemfile`に`gem "bcrypt", "3.1.18"`を追記して`$ bundle _2.3.14_ install`コマンドでインストール
+
+・`models/users.rb`に`has_secure_password`を追記
+
+・`has_secure_password`を追記したことによって、password属性とpassword_confirmation属性に対してのバリデーションが強制的に追加されたため、テストを書き換える。
+
+・テストを元にバリデーションを追加
+
+・Railsコンソールで新規ユーザーを作成`User.create(name: "Michael Hartl", email: "michael@example.com", password: "foobar", password_confirmation: "foobar")`
+
+・作成したユーザーに対して`user.authenticate("foobar")`とするとパスワードが正しいのでtrueとなり、ユーザー情報を返す。パスワードが間違っていればfalseを返す
+
+・`!!user.authenticate("foobar")`とするとtrueを返す
+
+・ここまでをpush
+
+</div></details>

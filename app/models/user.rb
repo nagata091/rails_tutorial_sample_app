@@ -11,4 +11,7 @@ class User < ApplicationRecord
                     format: {with: VALID_EMAIL_REGEX},
                     # 一意性の検証。大文字小文字は無視する
                     uniqueness: true
+  has_secure_password
+  validates :password, presence: true,
+                       length: {minimum: 6}
 end
