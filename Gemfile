@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Rubyのフレームワーク
 gem "rails",           "7.0.4"
+# `has_secure_password`を使ってパスワードをハッシュ化するためのライブラリ
+gem "bcrypt",          "3.1.18"
 # sassのc++実装のgemであり、コンパイルがsass-railsよりも速いと言われているもの　scssより効率的にcssを書くことができる　ネストとかできる
 gem "sassc-rails",     "2.1.2"
 # Twitterが作成したCSSフレームワーク

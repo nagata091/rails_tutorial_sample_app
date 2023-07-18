@@ -116,6 +116,8 @@ ruby ドキュメントをスキップする設定を`.gemrcファイル`に追�
 
 </div></details>
 
+<details><summary>第3章</summary><div>
+
 ## 第 3 章　 sample_app 静的なページの作成
 
 <details><summary>サンプルアプリケーションについての説明</summary><div>
@@ -218,6 +220,10 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ・ヘルパーメソッドを追加したことを push
 
+</div></details>
+
+<details><summary>第5章</summary><div>
+
 ## 第 5 章　レイアウトを作成する
 
 ・git branch を作成　`filling-in-layout`
@@ -252,4 +258,68 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ・ここまでを push
 
+</div></details>
+
+<details><summary>第6章</summary><div>
+
+## 第6章　ユーザーのモデルを作成する
+
+・ここから第12章まで、ユーザー認証システムを構築していく
+
+・トピックブランチを作成 `$ git switch -c modeling-users`
+
+・簡単に消えることのないユーザーモデルを構築する
+
+・`$ rails g model User name:string email:string`でUserモデルを生成、マイグレーション
+
+・ユーザーの検証のため、存在性（presence）、長さ（length）、フォーマット（format）、一意性（uniqueness）の検証をする
+
+・name属性とemail属性の存在性のテストとバリデーションを作成
+
+・name属性とemail属性の長さのテストとバリデーションを作成
+
+・email属性のフォーマットのテストとバリデーションを作成
+
+・email属性の一意性のテストとバリデーションを作成
+
+・データベースレベルの一意性を保証するために、emailインデックスをマイグレーションに追加する `$ rails g migration add_index_to_users_email`
+
+・生成されたマイグレーションファイルに次を追記 `add_index :users, :email, unique: true`
+
+・`test/fixtures/users.yml` の中身をいったん削除するとテストがパスするようになる
+
+・コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
+
+・ここまでをコミットしてpush
+  
 ・PR のテスト
+
+・セキュアなパスワードを追加する
+
+・セキュアなパスワードを実装するには`has_secure_password`をユーザーモデルに追記すればよい
+
+・`has_secure_password`を追記することによって、さまざまな機能が使えるようになる
+
+・機能を使うために、Userモデルに`password_digest`カラムを作成する
+
+・`$ rails g migration add_password_digest_to_users password_digest:string`でマイグレーションファイルを作成
+
+・`$ rails db:migrate`でマイグレーションを適用
+
+・`Gemfile`に`gem "bcrypt", "3.1.18"`を追記して`$ bundle _2.3.14_ install`コマンドでインストール
+
+・`models/users.rb`に`has_secure_password`を追記
+
+・`has_secure_password`を追記したことによって、password属性とpassword_confirmation属性に対してのバリデーションが強制的に追加されたため、テストを書き換える。
+
+・テストを元にバリデーションを追加
+
+・Railsコンソールで新規ユーザーを作成`User.create(name: "Michael Hartl", email: "michael@example.com", password: "foobar", password_confirmation: "foobar")`
+
+・作成したユーザーに対して`user.authenticate("foobar")`とするとパスワードが正しいのでtrueとなり、ユーザー情報を返す。パスワードが間違っていればfalseを返す
+
+・`!!user.authenticate("foobar")`とするとtrueを返す
+
+・ここまでをpush
+
+</div></details>
