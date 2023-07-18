@@ -262,7 +262,7 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 <details><summary>第6章</summary><div>
 
-## 第6章　ユーザーのモデルを作成する
+## 第 6 章　ユーザーのモデルを作成する
 
 ・ここから第12章まで、ユーザー認証システムを構築していく
 
@@ -291,7 +291,7 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 ・コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
 
 ・ここまでをコミットしてpush
-  
+
 ・PR のテスト
 
 ・セキュアなパスワードを追加する
@@ -319,6 +319,52 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 ・作成したユーザーに対して`user.authenticate("foobar")`とするとパスワードが正しいのでtrueとなり、ユーザー情報を返す。パスワードが間違っていればfalseを返す
 
 ・`!!user.authenticate("foobar")`とするとtrueを返す
+
+・ここまでをpush
+
+</div></details>
+
+<details><summary>第7章</summary><div>
+
+## 第 7 章　ユーザー登録
+
+・`$ git switch -c sign-up`で新しいブランチを作成
+
+・サイトのレイアウトにデバッグ情報を追加
+
+・ルートファイルに`resources :users`を追加。これによりusersに対する各アクション、名前付きルーティングが利用できるようになる
+
+・`show.html.erb`を作成し、usersコントローラーにshowアクションを作成。@user変数にパラメーターのIDのユーザー情報を入れるようにした
+
+・debuggerメソッドを任意の部分に差し込むことにより、メソッドがある時点での確変の状態を確認することができる
+
+・Gravatarを使ってプロフィール画像を設定する
+
+・ユーザー情報を次に変更`user.update(name: "Example User", email: "example@railstutorial.org", password: "foobar", password_confirmation: "foobar")`
+
+・ユーザーのサイドバーを実装する
+
+・ユーザー登録ページを実装していく
+
+・ユーザーコントローラーにcreateメソッドを定義
+
+・脆弱性に対処するため、Strong Parametersというテクニックを使用する
+
+・コントローラ内部で`user_params`を定義し、許可するデータと許可しないデータを分けるようにした
+
+・新規登録ページで、入力内容に誤りがあるときにエラーメッセージを表示させるようにした
+
+・エラーメッセージは`shared/_errormessages.html.erb`ファイルに記述し、renderメソッドで表示させる
+
+・エラーメッセージを日本語化。`https://blog.cloud-acct.com/posts/u-rails-error-messages-jayml/`を参考
+
+・フォームに対するテストをつくる。インテグレーションテストを新しく作成
+
+・登録フォームを完成させる
+
+・フラッシュメーッセージを表示させるためのコードをapplication.html.erbに追記
+
+・入力内容が無効、有効それぞれの場合のテストを作成
 
 ・ここまでをpush
 

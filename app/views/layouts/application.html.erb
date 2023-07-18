@@ -15,8 +15,14 @@
   <body>
     <%= render "layouts/header" %>
     <div class="container">
+      <!-- flashメッセージを表示させるためのコード -->
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}")%>
+      <% end %>
       <%= yield %>
       <%= render "layouts/footer" %>
+      <!-- デバッグ情報を表示させる。if Rails.env.development?により開発環境にのみ表示される。 -->
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
