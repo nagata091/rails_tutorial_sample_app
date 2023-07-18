@@ -262,7 +262,7 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 <details><summary>第6章</summary><div>
 
-## 第6章　ユーザーのモデルを作成する
+## 第 6 章　ユーザーのモデルを作成する
 
 ・ここから第12章まで、ユーザー認証システムを構築していく
 
@@ -291,7 +291,7 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 ・コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
 
 ・ここまでをコミットしてpush
-  
+
 ・PR のテスト
 
 ・セキュアなパスワードを追加する
@@ -321,5 +321,15 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 ・`!!user.authenticate("foobar")`とするとtrueを返す
 
 ・ここまでをpush
+
+</div></details>
+
+<details><summary>第7章</summary><div>
+
+## 第 7 章　ユーザー登録
+
+・`$ git switch -c sign-up`で新しいブランチを作成
+
+・サイトのレイアウトにデバッグ情報を追加
 
 </div></details>
