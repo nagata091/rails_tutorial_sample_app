@@ -416,4 +416,13 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 <details><summary>第9章</summary><div>
 
-## 第 9 章
+## 第 9 章　発展的なログイン機構
+
+・永続cookieを使って、ブラウザを再起動した後でもすぐにログインできるようにする。
+
+・Remember me 機能を実装する
+
+・
+
+
+</div></details>
