@@ -397,3 +397,23 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 ・`_header.html.erb`を書き換える。
 
 ・ここまでをコミット
+
+・メニューのドロップダウンリストをjavascriptでつくる
+
+・モバイル向けスタイリングを作成する
+
+・レイアウトの変更をテストする
+
+・ユーザー登録時にログインするようにする
+
+・ログアウト機能をつくる
+
+・それぞれのテストを作成
+
+・第8章終了。ここまでをpush
+
+</div></details>
+
+<details><summary>第9章</summary><div>
+
+## 第 9 章

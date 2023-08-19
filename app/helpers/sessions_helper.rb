@@ -11,7 +11,7 @@ module SessionsHelper
   def current_user
     if session[:user_id]
       # current_userがすでに存在すればそのまま返し、なければセッション中のIDでユーザーを検索して返す
-      @current_user = @current_user || User.find_by(id: session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id])
     end
   end
 
@@ -19,5 +19,12 @@ module SessionsHelper
   def logged_in?
     # current_userがnilなら(true、つまりログインしてない)falseを返し、nilでないなら(false、つまりログインしている)trueを返す
     !current_user.nil?
+  end
+
+  # 現在のユーザーをログアウトするメソッド
+  def log_out
+    reset_session
+    # 安全のためcuurent_userも削除。すぐにrootにリダイレクトされるので問題なし
+    @current_user = nil
   end
 end
