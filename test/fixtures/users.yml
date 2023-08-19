@@ -1,1 +1,8 @@
 # 第6章でいったん削除
+
+# 第8章で利用
+# ユーザーログインのテストで利用する備え付け(fixture)のユーザー
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest("password") %>

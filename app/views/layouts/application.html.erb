@@ -3,6 +3,7 @@
   <head>
     <!-- yield(:title)に各ページの:titleで設定された値が代入される -->
     <title><%= full_title(yield(:title)) %></title>
+    <!-- ビューポートを使うと、PCでモードとSPモードを切り替えられるようになる -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!--文字セットを表すmetaタグ-->
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
   <body>
     <%= render "layouts/header" %>
