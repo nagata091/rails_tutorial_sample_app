@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
+  # `before_save`は、モデルが保存される直前に実行されるコールバック
   before_save {self.email = self.email.downcase}
                    # 存在性の検証
   validates :name, presence: true,
@@ -20,5 +22,37 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  # 22の長さのランダムな文字列を生成し、トークンとして返す
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # ハッシュ化されたトークンを、永続的なセッションのためにデータベースに記憶する
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
+    # update_attributeの結果を返すのではなく、remember_digestを返すようにする
+    remember_digest
+  end
+
+  # セッションハイジャック防止のためにセッショントークンを返す
+  # この記憶ダイジェストを再利用しているのは単に利便性のため
+  def session_token
+    remember_digest || remember
+  end
+
+  # 渡されたトークンが、ダイジェストと一致したらtrueを返す
+  def authenticated?(remember_token)
+    # ダイジェストがnilの場合はfalseを返して早期脱出する
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  # ユーザーの情報を破棄するメソッド
+  def forget
+    # データベースのremember_digestをnilに更新する
+    update_attribute(:remember_digest, nil)
   end
 end
