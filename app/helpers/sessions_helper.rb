@@ -44,6 +44,11 @@ module SessionsHelper
     end
   end
 
+  # 渡されたユーザーがcurrent_userならtrueを返すメソッド
+  def current_user?(user)
+    user && user == current_user
+  end
+
   # ユーザーがログイン済ならtrue、その他ならfalseを返すメソッド
   def logged_in?
     # current_userがnilなら(true、つまりログインしてない)falseを返し、
@@ -64,5 +69,11 @@ module SessionsHelper
     reset_session
     # 安全のためcuurent_userも削除。すぐにrootにリダイレクトされるので問題なし
     @current_user = nil
+  end
+
+  # アクセスしようとしたURLを保存するメソッド
+  def store_location
+    # GETリクエストの場合のみsession[:forwarding_url]に保存
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end
