@@ -9,6 +9,9 @@ class SessionsController < ApplicationController
     # ユーザーが存在し、かつパスワードが一致した場合にtrue
     if @user && @user.authenticate(params[:session][:password])
 
+      # アクセスしようとしていたURLを保存しておく
+      forwarding_url = session[:forwarding_url]
+
       # セキュリティのため(セッション固定攻撃対策)、ログイン直前にセッションをリセット
       reset_session
 
@@ -19,8 +22,8 @@ class SessionsController < ApplicationController
       # ヘルパーで作成したlog_inメソッドでログイン
       log_in @user
 
-      # ユーザー詳細ページにリダイレクト。次と同じこと`user_url(user)`
-      redirect_to @user
+      # アクセスしようとしていたURLもしくはユーザー詳細ページにリダイレクト
+      redirect_to forwarding_url || @user
     else
       # nowメソッドはレンダリングが終わっているページで特別にフラッシュメッセージを表示できる
       # nowメソッドを使うことで、メッセージはその後リクエストが発生したときに消える。

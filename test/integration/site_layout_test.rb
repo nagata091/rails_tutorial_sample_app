@@ -2,7 +2,7 @@ require "test_helper"
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
 
-  test "レイアウトの各リンクが正しく動くかどうか" do
+  test "レイアウトの各リンクが正しく動くかどうかテスト" do
     # rootにGETリクエストを送る
     get root_path
     # ページの正しいテンプレートが表示されているか確認
@@ -13,7 +13,23 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
     assert_select "a[href=?]", signup_path
+    get contact_path
+    assert_select "title", full_title("Contact")
     get signup_path
     assert_select "title", full_title("Sign up")
+  end
+
+  def setup
+    @user = users(:michael)
+  end
+
+  test "ログイン後のルートページのレイアウトが正しいかテスト" do
+    log_in_as(@user)
+    get root_path
+    assert_template "static_pages/home"
+    assert_select "a[href=?]", users_path
+    assert_select "a[href=?]", user_path(@user)
+    assert_select "a[href=?]", edit_user_path(@user)
+    assert_select "a[href=?]", logout_path
   end
 end

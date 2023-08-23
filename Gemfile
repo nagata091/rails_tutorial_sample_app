@@ -5,6 +5,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem "rails",           "7.0.4"
 # `has_secure_password`を使ってパスワードをハッシュ化するためのライブラリ
 gem "bcrypt",          "3.1.18"
+# 実際にいそうな架空のユーザー名を作成するgem
+gem "faker",           "2.21.0"
+# ページネーションを実装するためのgem　ページネーションとは、ページを分割して表示すること
+gem "will_paginate",   "3.3.1"
+# Bootstrapのページネーションスタイルを適用するためのgem
+gem "bootstrap-will_paginate", "1.0.0"
 # sassのc++実装のgemであり、コンパイルがsass-railsよりも速いと言われているもの　scssより効率的にcssを書くことができる　ネストとかできる
 gem "sassc-rails",     "2.1.2"
 # Twitterが作成したCSSフレームワーク

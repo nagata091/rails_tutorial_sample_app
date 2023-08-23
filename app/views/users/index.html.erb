@@ -1,0 +1,16 @@
+<% provide(:title, 'All users') %>
+<h1>すべてのユーザー</h1>
+
+<%# ページネーションするためのメソッド %>
+<%= will_paginate %>
+
+<ul class="users">
+  <%# Railsは@usersをUserオブジェクトと推測してくれるので、自動的にユーザーを列挙してくれる %>
+  <%= render @users %>
+  <%# 以下と同じ意味 %>
+  <%# @users.each do |user| %>
+    <%# render user %>
+  <%# end %>
+</ul>
+
+<%= will_paginate %>
