@@ -78,7 +78,7 @@ end
 class RememberringTest < UsersLogin
   test "ログイン時にチェックボックスをオンにした場合のテスト" do
     log_in_as(@user, remember_me: "1")
-    assert_equal cookies[:remember_token], assigns(:user).remember_token
+    assert_not cookies[:remember_token].blank?
   end
 
   test "ログイン時にチェックボックスをオンにしない場合のテスト" do

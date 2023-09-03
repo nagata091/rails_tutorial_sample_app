@@ -77,6 +77,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "ダイジェストが存在しないときのauthenticate?のテスト" do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 end

@@ -35,7 +35,7 @@ module SessionsHelper
       user = User.find_by(id: user_id)
       # ユーザーが存在し、かつcookiesに保存されている
       # remember_tokenがダイジェストと一致した場合にtrue
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         # ヘルパーで作成したlog_inメソッドでログイン
         log_in user
         # インスタンス変数に代入
