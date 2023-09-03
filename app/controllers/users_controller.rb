@@ -6,12 +6,13 @@ class UsersController < ApplicationController
   def index
     # pagenateメソッドは1ページに30ユーザーを表示する
     # params[:page]の値はwill_paginateによって自動的に生成される
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
     # params[:id]にはパラメーターに指定された値が代入される。
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -21,13 +22,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-
-      # ユーザー登録と同時にログインするようにする
-      reset_session
-      log_in @user
-
-      flash[:success] = "サンプルアプリへようこそー！"
-      redirect_to @user
+      # ユーザー登録と同時にアカウントを有効化するメールを送信する
+      @user.send_activation_email
+      flash[:info] = "アカウントを有効化するためにメールを確認してください！"
+      redirect_to root_url
     else
       render "new", status: :unprocessable_entity
     end

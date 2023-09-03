@@ -539,3 +539,101 @@ $ rails g migration add_remember_digest_to_users remember_digest:string
 
 
 </div></details>
+
+<details><summary>第11章</summary><div>
+
+## 第 11 章　アカウントの有効化
+
+- この章で作る機能は、ユーザー登録時にメールを送信する機能、メール内のリンクをクリックしてアカウントを有効化する機能、アカウントが有効化されていないユーザーがログインできないようにする機能
+
+- ブランチを作成`account_activation`
+
+- AccountActivationsコントローラを作成`$ rails g controller AccountActivations`
+
+- `routs.rb`に`resources :account_activations, only: [:edit]`を追加
+
+- これで`edit_account_activation_url(token)`という名前付きルーティングが使えるようになる
+
+- Usersモデルに`activation_digest`,`activated`,`activated_at`属性を追加する
+
+- `activation`属性のデフォルト値はfalseにしておく
+
+- `user.rb`に`create_activation_digest`メソッドを追加する
+
+- `before_create`コールバックを使って、ユーザーが作成される前に`create_activation_digest`メソッドを実行するようにする
+
+- `seed.rb`と`fixture`を編集し、サンプルユーザーを最初から有効にしておく
+
+- `$ rails db:migrate:reset`,`$ rails db:seed`を実行して有効化されたサンプルユーザーを作成
+
+- アカウント有効のメール送信機能を実装する
+
+- 送信メールのテンプレートを作成する
+
+- 作成したテンプレートの実際の表示を確認するために、メールプレビューを利用する。
+
+- メールプレビューを使うために、`development.rb`に以下を追加する
+
+```
+42  host = "localhost:3000"
+43  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+```
+
+- `user_mailer_preview`を更新する
+
+- コメントアウトしているURLにアクセスすると、メールのプレビューを確認できる
+
+- 送信メールのテストを作成する
+
+- このテストがパスするためには、テストファイル内のドメイン名を正しく設定する必要がある。
+
+- `config/environments/test.rb`に`40  config.action_mailer.default_url_options = { host: 'example.com' }`を追加
+
+- チュートリアル内の見本の、正規表現を使ってメール本文内をテストする以下のコードでは、うまくキャッチしてくれなくてテストがパスしなかった。
+
+```
+assert_match user.name,               mail.body.encoded
+assert_match user.activation_token,   mail.body.encoded
+assert_match CGI.escape(user.email),  mail.body.encoded
+```
+
+- ので、以下のように書き換えたらパスした。
+
+```
+# mail.body.encodedはメールの本文のこと。assert_matchで正規表現を使って、
+# メール本文内にユーザー名、有効化トークン、エスケープ済みのメールアドレスが含まれているかどうかをテストする。
+# user.nameが本文に含まれている
+assert_match user.name,               mail.text_part.body.encoded
+assert_match user.name,               mail.html_part.body.encoded
+# user.activation_tokenが本文に含まれている
+assert_match user.activation_token,   mail.text_part.body.encoded
+assert_match user.activation_token,   mail.html_part.body.encoded
+# 特殊文字をエスケープしたuser.mailが本文に含まれている
+assert_match CGI.escape(user.email),  mail.text_part.body.encoded
+assert_match CGI.escape(user.email),  mail.html_part.body.encoded
+```
+
+- createアクションに、メーラーをアプリケーションで実際に使えるようコードを追加する
+
+- アカウントを有効化するメソッドを作るために、`authenticated?`メソッドを`send`メソッドを使って汎用的に作る
+
+- `account_activations_contoller`に`edit`アクションを実装する
+
+- `edit`アクションは、`params`ハッシュで渡されたメールアドレスに対応するユーザーを認証する
+
+- ログイン時、有効化が完了したユーザーだけがログインできるようにする
+
+- ユーザーの新規登録時に発行されるURLにアクセスすると、ユーザーのアカウントが有効化される
+
+- 有効化のテストを作成する。すでにあるテストに手を加えることで実装する
+
+- ユーザー有効化のコードをリファクタリングする
+
+- `activate`メソッドと`send_activation_email`をユーザーモデルに新しく定義し、コントローラで呼び出すようにする
+
+- 演習で変更したコードをテストする
+
+- ここまでをpush
+
+
+</div></details>
