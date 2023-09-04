@@ -5,8 +5,7 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(name: "Example User",
                      email: "user@example.com",
                      password: "foobar",
-                     password_confirmation: "foobar"
-                     )
+                     password_confirmation: "foobar")
   end
 
   test "仮ユーザーが有効かどうかテスト" do
@@ -77,4 +76,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "ダイジェストが存在しないときのauthenticate?のテスト" do
+    assert_not @user.authenticated?(:remember, '')
+  end
 end

@@ -4,9 +4,9 @@
 
 ## 第 1 章　 hello_app
 
-・クラウド IDE で環境構築
+- クラウド IDE で環境構築
 
-・rvm を使って`ruby3.1.2`をインストール
+- rvm を使って`ruby3.1.2`をインストール
 
 `$ rvm get stable`
 
@@ -14,53 +14,53 @@
 
 `$ rvm --default use 3.1.2`
 
-・rails をインストールする
+- rails をインストールする
 
-ruby ドキュメントをスキップする設定を`.gemrcファイル`に追加
+- ruby ドキュメントをスキップする設定を`.gemrcファイル`に追加
 
 `$ echo "gem: --no-document" >> ~/.gemrc`
 
-`rails7.0.4`をインストール
+- `rails7.0.4`をインストール
 
 `$ gem install rails -v 7.0.4`
 
-・`bundler2.3.14`をインストール
+- `bundler2.3.14`をインストール
 
 `$ gem install bundler -v 2.3.14`
 
-・cloud9 環境のディスク容量を追加する
+- cloud9 環境のディスク容量を追加する
 
 `$ source <(curl -sL https://cdn.learnenough.com/resize)``
 
-・`~/environment`で`hello_app`という名前の rails アプリを新規作成
+- `~/environment`で`hello_app`という名前の rails アプリを新規作成
 
-バージョンを指定　`--skip-bundle`コマンドを省略すると、システム上で見つかる最も直近のバージョンの bundler が使われることになる
+- バージョンを指定　`--skip-bundle`コマンドを省略すると、システム上で見つかる最も直近のバージョンの bundler が使われることになる
 
 `$ rails _ 7.0.4 _ new hello_app --skip-bundle`
 
-・Gemfile の中身を書き換え
+- Gemfile の中身を書き換え
 
-・`config/environment/development.rb`にクラウド IDE から rails サーバーへ接続する許可を記述
+- `config/environment/development.rb`にクラウド IDE から rails サーバーへ接続する許可を記述
 
 `config.hosts.clear`
 
-・rails サーバーを起動、初期画面が表示されることを確認
+- rails サーバーを起動、初期画面が表示されることを確認
 
-・MVC(model-view-controller)
+- MVC(model-view-controller)
 
 ブラウザからのリクエストを controller が受け取り、model(データベースとの通信を担当)を対話して呼び出し、view をレンダリングして HTML をブラウザに返す
 
-・`application_controller`に hello メソッドを定義
+- `application_controller`に hello メソッドを定義
 
-・`config/routes`で hello メソッドで表示される HTML を root に設定
+- `config/routes`で hello メソッドで表示される HTML を root に設定
 
-・`localhost:3000`で hello メソッドで定義した HTML が表示されることを確認
+- `localhost:3000`で hello メソッドで定義した HTML が表示されることを確認
 
-・クラウド IDE の git バージョンが 2.17.1 であったのでアップグレード　 2.41.0 に
+- クラウド IDE の git バージョンが 2.17.1 であったのでアップグレード　 2.41.0 に
 
 `$ source <(curl -sL https://cdn.learnenough.com/upgrade_git)``
 
-### ・github にリポジトリ hello_app-second を作成してプッシュ
+### - github にリポジトリ hello_app-second を作成してプッシュ
 
 ↓ 個人アクセストークン
 
@@ -74,45 +74,49 @@ ruby ドキュメントをスキップする設定を`.gemrcファイル`に追�
 
 ## 第 2 章　 toy_app
 
-・`rails new` で`toy_app`を作成
+- `rails new` で`toy_app`を作成
 
-・gemfile を書き換えて`bundle install`第 1 章で作ったものに加え、"sassc-rails"をインストール
+- gemfile を書き換えて`bundle install`第 1 章で作ったものに加え、"sassc-rails"をインストール
 
-・第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
+- 第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
 
-・rails サーバーを起動し、無事起動することを確認
+- rails サーバーを起動し、無事起動することを確認
 
-### ・gtihub のリポジトリ toy\_ app_second を作成して push
+- リポジトリ`toy_app_second`を作成して push
 
-・scaffold コマンドで Users モデルを作成　カラムは`name:string`と`email:string`
+- scaffold コマンドで Users モデルを作成　カラムは`name:string`と`email:string`
 
-・作ったデータベースをマイグレート
+- 作ったデータベースをマイグレート
 
-・scaffold で作成したので、URL が~/users に新しくページが自動で作成されていることを確認
+- scaffold で作成したので、URL が~/users に新しくページが自動で作成されていることを確認
 
-・root ページを`users/index`に変更
+- root ページを`users/index`に変更
 
-・scaffold はいろんなページを一気に作成してくれるので便利だが、データの検証やテストが行われていないなどの問題点が多々ある。
+- scaffold はいろんなページを一気に作成してくれるので便利だが、データの検証やテストが行われていないなどの問題点が多々ある。
 
-・Micropost モデルを作成　カラムは`content:text`と`user_id:integer`
+- Micropost モデルを作成　カラムは`content:text`と`user_id:integer`
 
-・`models/micropost.rb`に投稿のバリデーションを作成　投稿を 140 字に制限
+- `models/micropost.rb`に投稿のバリデーションを作成　投稿を 140 字に制限
 
-・`models/user.rb`に user 一人に複数の micropost が紐づくように設定　`has_many :microposts`
+- `models/user.rb`に user 一人に複数の micropost が紐づくように設定
 
-・`models/micropost.rb`に micropost 一つに user 一人が紐づくように設定　`belongs_to :user`
+`has_many :microposts`
 
-・rails コンドールで紐づけがちゃんとできているか確認
+- `models/micropost.rb`に micropost 一つに user 一人が紐づくように設定
 
-・演習：ユーザーの show ページに、ユーザーの最初の投稿を表示させる
+`belongs_to :user`
 
-・演習：投稿のバリデーションを追加　空白だとエラーを返すように
+- rails コンドールで紐づけがちゃんとできているか確認
 
-・演習：User モデルにバリデーションを追加　 name と email が空白のときにエラーを返す
+- 演習：ユーザーの show ページに、ユーザーの最初の投稿を表示させる
 
-・ユーザーと投稿のページの行ったり来たりが面倒だったのでヘッダーに各一覧へのリンクを設置
+- 演習：投稿のバリデーションを追加　空白だとエラーを返すように
 
-### ・toy_app の作成終了　 push
+- 演習：User モデルにバリデーションを追加　 name と email が空白のときにエラーを返す
+
+- ユーザーと投稿のページの行ったり来たりが面倒だったのでヘッダーに各一覧へのリンクを設置
+
+### - toy_app の作成終了　 push
 
 </div></details>
 
@@ -169,56 +173,55 @@ $ rails server
 
 </div></details>
 
-・sample_app を新しく作成
+- sample_app を新しく作成
 
-・`--skip-bundle`によって javascript を使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
+- `--skip-bundle`によって javascript を使うためのパッケージのインストールもスキップしているらしい　あとで手動で入れるよ
 
-・gemfile を書き換え、bundle インストール
+- gemfile を書き換え、bundle インストール
 
-・このとき、production 環境でしか使わない gem はインストールしないように設定することで、
-development と test 環境では SQLite、production 環境では postgreSQL を使うようになる。この時点では postgreSQL はまだ未インストール
+- このとき、production 環境でしか使わない gem はインストールしないように設定することで、development と test 環境では SQLite、production 環境では postgreSQL を使うようになる。この時点では postgreSQL はまだ未インストール
 
-・gtihub にリポジトリ rails-tutorial-second を作成して push
+- gtihub にリポジトリ rails-tutorial-second を作成して push
 
-・第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
+- 第 1 章でもしたように、hello メソッドを定義、root を設定、`config/environment/development.rb`に接続許可を設定
 
-・gemfile をロックし、ここまでを push
+- gemfile をロックし、ここまでを push
 
-・rails g でコントローラ名「Static Pages」で Home、Help ページを作成
+- rails g でコントローラ名「Static Pages」で Home、Help ページを作成
 
-・新しいブランチ static-pages を作成し、そこに push 　`$ git push --set-upstream origin static-pages`としないとできなかった
+- 新しいブランチ static-pages を作成し、そこに push 　`$ git push --set-upstream origin static-pages`としないとできなかった
 
-・コントローラー作成をミスってもとに戻したいときは、`$ rails destroy ~~~~`とすれば OK
+- コントローラー作成をミスってもとに戻したいときは、`$ rails destroy ~~~~`とすれば OK
 
-・Home ページと Help ページをいろいろ修正
+- Home ページと Help ページをいろいろ修正
 
-・About ページを手動で作るに当たって、まずはテストを作成する
+- About ページを手動で作るに当たって、まずはテストを作成する
 
-・テストをパスするためにルーティング、コントローラーのメソッド、ビューを作成
+- テストをパスするためにルーティング、コントローラーのメソッド、ビューを作成
 
-・各ページにページタイトルを表示させる作業をしていく
+- 各ページにページタイトルを表示させる作業をしていく
 
-・まずテストを作成`assert_select "title, "タイトル"``
+- まずテストを作成`assert_select "title, "タイトル"``
 
-・テストの最初に setup メソッドを定義して重複を回避
+- テストの最初に setup メソッドを定義して重複を回避
 
-・`application.html.erbファイル`のタイトル、各ページに provide メソッドを設定することでタイトルが動的に切り替わるように
+- `application.html.erbファイル`のタイトル、各ページに provide メソッドを設定することでタイトルが動的に切り替わるように
 
-・演習：ルートを変更したことで root_url が利用できるようになった。これに対するテストを作成
+- 演習：ルートを変更したことで root_url が利用できるようになった。これに対するテストを作成
 
-・ここまでを"Static Pages 作成終了"と commit して main ブランチに merge し、push
+- ここまでを"Static Pages 作成終了"と commit して main ブランチに merge し、push
 
-・minitest reporters を導入
+- `minitest reporters`を導入
 
-・Guard によるテストの自動化を導入　ターミナルで `$ bundle _2.3.14_ exec guard init` を実行
+- Guard によるテストの自動化を導入　ターミナルで `$ bundle _2.3.14_ exec guard init` を実行
 
-・生成された Guard ファイルを編集　編集後は新しいターミナルで `$ bundle _2.3.14_ exec guard` を実行しておけば自動でテストしてくれる
+- 生成された Guard ファイルを編集　編集後は新しいターミナルで `$ bundle _2.3.14_ exec guard` を実行しておけば自動でテストしてくれる
 
-・ここまでを"テストのセットアップ完了"で commit して push
+- ここまでを"テストのセットアップ完了"で commit して push
 
-・第 4 章で application_helper にタイトルを表示するヘルパーメソッドを追加
+- 第4章で application_helper にタイトルを表示するヘルパーメソッドを追加
 
-・ヘルパーメソッドを追加したことを push
+- ヘルパーメソッドを追加したことを push
 
 </div></details>
 
@@ -226,37 +229,37 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ## 第 5 章　レイアウトを作成する
 
-・git branch を作成　`filling-in-layout`
+- git branch を作成　`filling-in-layout`
 
-・ヘッダー、home の html を編集
+- ヘッダー、home の html を編集
 
-・bootstrap をインストールする
+- bootstrap をインストールする
 
-・すべての CSS を一つにまとめるため、カスタム CSS ファイルを作成
+- すべての CSS を一つにまとめるため、カスタム CSS ファイルを作成
 
-・フッターの html を編集
+- フッターの html を編集
 
-・ヘッダーとフッターの CSS を追加
+- ヘッダーとフッターの CSS を追加
 
-・コンタクトページを追加
+- コンタクトページを追加
 
-・各ページの名前付きルーティングを定義　テストを名前付きルーティングに書き換え
+- 各ページの名前付きルーティングを定義　テストを名前付きルーティングに書き換え
 
-・結合テスト(integration_test)を作成 `$ rails g integration-test site-layout`
+- 結合テスト(integration_test)を作成 `$ rails g integration-test site-layout`
 
-・ここまでを push
+- ここまでを push
 
-・static_pages の各ページの文章を修正
+- static_pages の各ページの文章を修正
 
-・Application ヘルパーで使っている full_title メソッドのテストを作成
+- Application ヘルパーで使っている full_title メソッドのテストを作成
 
-・ここまでを commit
+- ここまでを commit
 
-・ユーザー登録ページへのルーティングを作成していく
+- ユーザー登録ページへのルーティングを作成していく
 
-・Users コントローラーを作成、new を Sign up ページとして作成
+- Users コントローラーを作成、new を Sign up ページとして作成
 
-・ここまでを push
+- ここまでを push
 
 </div></details>
 
@@ -264,63 +267,63 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ## 第 6 章　ユーザーのモデルを作成する
 
-・ここから第12章まで、ユーザー認証システムを構築していく
+- ここから第12章まで、ユーザー認証システムを構築していく
 
-・トピックブランチを作成 `$ git switch -c modeling-users`
+- トピックブランチを作成 `$ git switch -c modeling-users`
 
-・簡単に消えることのないユーザーモデルを構築する
+- 簡単に消えることのないユーザーモデルを構築する
 
-・`$ rails g model User name:string email:string`でUserモデルを生成、マイグレーション
+- `$ rails g model User name:string email:string`でUserモデルを生成、マイグレーション
 
-・ユーザーの検証のため、存在性（presence）、長さ（length）、フォーマット（format）、一意性（uniqueness）の検証をする
+- ユーザーの検証のため、存在性（presence）、長さ（length）、フォーマット（format）、一意性（uniqueness）の検証をする
 
-・name属性とemail属性の存在性のテストとバリデーションを作成
+- name属性とemail属性の存在性のテストとバリデーションを作成
 
-・name属性とemail属性の長さのテストとバリデーションを作成
+- name属性とemail属性の長さのテストとバリデーションを作成
 
-・email属性のフォーマットのテストとバリデーションを作成
+- email属性のフォーマットのテストとバリデーションを作成
 
-・email属性の一意性のテストとバリデーションを作成
+- email属性の一意性のテストとバリデーションを作成
 
-・データベースレベルの一意性を保証するために、emailインデックスをマイグレーションに追加する `$ rails g migration add_index_to_users_email`
+- データベースレベルの一意性を保証するために、emailインデックスをマイグレーションに追加する `$ rails g migration add_index_to_users_email`
 
-・生成されたマイグレーションファイルに次を追記 `add_index :users, :email, unique: true`
+- 生成されたマイグレーションファイルに次を追記 `add_index :users, :email, unique: true`
 
-・`test/fixtures/users.yml` の中身をいったん削除するとテストがパスするようになる
+- `test/fixtures/users.yml` の中身をいったん削除するとテストがパスするようになる
 
-・コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
+- コールバックメソッドを定義し、データベースでも一意性を保証するようにする。`before_save {self.email = email.downcase}`を`models/user.rb`に追記
 
-・ここまでをコミットしてpush
+- ここまでをコミットしてpush
 
-・PR のテスト
+- PR のテスト
 
-・セキュアなパスワードを追加する
+- セキュアなパスワードを追加する
 
-・セキュアなパスワードを実装するには`has_secure_password`をユーザーモデルに追記すればよい
+- セキュアなパスワードを実装するには`has_secure_password`をユーザーモデルに追記すればよい
 
-・`has_secure_password`を追記することによって、さまざまな機能が使えるようになる
+- `has_secure_password`を追記することによって、さまざまな機能が使えるようになる
 
-・機能を使うために、Userモデルに`password_digest`カラムを作成する
+- 機能を使うために、Userモデルに`password_digest`カラムを作成する
 
-・`$ rails g migration add_password_digest_to_users password_digest:string`でマイグレーションファイルを作成
+- `$ rails g migration add_password_digest_to_users password_digest:string`でマイグレーションファイルを作成
 
-・`$ rails db:migrate`でマイグレーションを適用
+- `$ rails db:migrate`でマイグレーションを適用
 
-・`Gemfile`に`gem "bcrypt", "3.1.18"`を追記して`$ bundle _2.3.14_ install`コマンドでインストール
+- `Gemfile`に`gem "bcrypt", "3.1.18"`を追記して`$ bundle _2.3.14_ install`コマンドでインストール
 
-・`models/users.rb`に`has_secure_password`を追記
+- `models/users.rb`に`has_secure_password`を追記
 
-・`has_secure_password`を追記したことによって、password属性とpassword_confirmation属性に対してのバリデーションが強制的に追加されたため、テストを書き換える。
+- `has_secure_password`を追記したことによって、password属性とpassword_confirmation属性に対してのバリデーションが強制的に追加されたため、テストを書き換える。
 
-・テストを元にバリデーションを追加
+- テストを元にバリデーションを追加
 
-・Railsコンソールで新規ユーザーを作成`User.create(name: "Michael Hartl", email: "michael@example.com", password: "foobar", password_confirmation: "foobar")`
+- Railsコンソールで新規ユーザーを作成`User.create(name: "Michael Hartl", email: "michael@example.com", password: "foobar", password_confirmation: "foobar")`
 
-・作成したユーザーに対して`user.authenticate("foobar")`とするとパスワードが正しいのでtrueとなり、ユーザー情報を返す。パスワードが間違っていればfalseを返す
+- 作成したユーザーに対して`user.authenticate("foobar")`とするとパスワードが正しいのでtrueとなり、ユーザー情報を返す。パスワードが間違っていればfalseを返す
 
-・`!!user.authenticate("foobar")`とするとtrueを返す
+- `!!user.authenticate("foobar")`とするとtrueを返す
 
-・ここまでをpush
+- ここまでをpush
 
 </div></details>
 
@@ -328,45 +331,45 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ## 第 7 章　ユーザー登録
 
-・`$ git switch -c sign-up`で新しいブランチを作成
+- `$ git switch -c sign-up`で新しいブランチを作成
 
-・サイトのレイアウトにデバッグ情報を追加
+- サイトのレイアウトにデバッグ情報を追加
 
-・ルートファイルに`resources :users`を追加。これによりusersに対する各アクション、名前付きルーティングが利用できるようになる
+- ルートファイルに`resources :users`を追加。これによりusersに対する各アクション、名前付きルーティングが利用できるようになる
 
-・`show.html.erb`を作成し、usersコントローラーにshowアクションを作成。@user変数にパラメーターのIDのユーザー情報を入れるようにした
+- `show.html.erb`を作成し、usersコントローラーにshowアクションを作成。@user変数にパラメーターのIDのユーザー情報を入れるようにした
 
-・debuggerメソッドを任意の部分に差し込むことにより、メソッドがある時点での確変の状態を確認することができる
+- debuggerメソッドを任意の部分に差し込むことにより、メソッドがある時点での確変の状態を確認することができる
 
-・Gravatarを使ってプロフィール画像を設定する
+- Gravatarを使ってプロフィール画像を設定する
 
-・ユーザー情報を次に変更`user.update(name: "Example User", email: "example@railstutorial.org", password: "foobar", password_confirmation: "foobar")`
+- ユーザー情報を次に変更`user.update(name: "Example User", email: "example@railstutorial.org", password: "foobar", password_confirmation: "foobar")`
 
-・ユーザーのサイドバーを実装する
+- ユーザーのサイドバーを実装する
 
-・ユーザー登録ページを実装していく
+- ユーザー登録ページを実装していく
 
-・ユーザーコントローラーにcreateメソッドを定義
+- ユーザーコントローラーにcreateメソッドを定義
 
-・脆弱性に対処するため、Strong Parametersというテクニックを使用する
+- 脆弱性に対処するため、Strong Parametersというテクニックを使用する
 
-・コントローラ内部で`user_params`を定義し、許可するデータと許可しないデータを分けるようにした
+- コントローラ内部で`user_params`を定義し、許可するデータと許可しないデータを分けるようにした
 
-・新規登録ページで、入力内容に誤りがあるときにエラーメッセージを表示させるようにした
+- 新規登録ページで、入力内容に誤りがあるときにエラーメッセージを表示させるようにした
 
-・エラーメッセージは`shared/_errormessages.html.erb`ファイルに記述し、renderメソッドで表示させる
+- エラーメッセージは`shared/_errormessages.html.erb`ファイルに記述し、renderメソッドで表示させる
 
-・エラーメッセージを日本語化。`https://blog.cloud-acct.com/posts/u-rails-error-messages-jayml/`を参考
+- エラーメッセージを日本語化。`https://blog.cloud-acct.com/posts/u-rails-error-messages-jayml/`を参考
 
-・フォームに対するテストをつくる。インテグレーションテストを新しく作成
+- フォームに対するテストをつくる。インテグレーションテストを新しく作成
 
-・登録フォームを完成させる
+- 登録フォームを完成させる
 
-・フラッシュメーッセージを表示させるためのコードをapplication.html.erbに追記
+- フラッシュメーッセージを表示させるためのコードをapplication.html.erbに追記
 
-・入力内容が無効、有効それぞれの場合のテストを作成
+- 入力内容が無効、有効それぞれの場合のテストを作成
 
-・ここまでをpush
+- ここまでをpush
 
 </div></details>
 
@@ -374,46 +377,319 @@ development と test 環境では SQLite、production 環境では postgreSQL �
 
 ## 第 8 章　ユーザー登録
 
-・ログイン機能を作るトピックブランチを作成 `basic-login`
+- ログイン機能を作るトピックブランチを作成 `basic-login`
 
-・Sessionsコントローラを作成`$ rails g controller Sessions new`
+- Sessionsコントローラを作成`$ rails g controller Sessions new`
 
-・ログイン画面を作成
+- ログイン画面を作成
 
-・フォームへの入力が無効な場合の処理を作成、フラッシュメッセージのテストを作成
+- フォームへの入力が無効な場合の処理を作成、フラッシュメッセージのテストを作成
 　`flash.now`を使うとページが切り替わったときに非表示になる。
 
-・ログイン中の状態での有効な値の送信をフォームで正しく扱えるようにする。
+- ログイン中の状態での有効な値の送信をフォームで正しく扱えるようにする。
 
-・sessionsヘルパーにログイン機能つくり、createに実装。ユーザーIDを暗号化cookieとして安全に置けるようになった。
+- sessionsヘルパーにログイン機能つくり、createに実装。ユーザーIDを暗号化cookieとして安全に置けるようになった。
 
-・ユーザーIDを別のページで取り出せるようにする。current_userメソッドを作る。
+- ユーザーIDを別のページで取り出せるようにする。current_userメソッドを作る。
 　これにより、ユーザーがログインしているかに応じてアプリケーションの動作を変更できるようになった。
 
-・レイアウトのリンクを追加する。リンクはログイン状態に応じて変わるようにする。
+- レイアウトのリンクを追加する。リンクはログイン状態に応じて変わるようにする。
 
-・`logged_in?`メソッドをつくる。
+- `logged_in?`メソッドをつくる。
 
-・`_header.html.erb`を書き換える。
+- `_header.html.erb`を書き換える。
 
-・ここまでをコミット
+- ここまでをコミット
 
-・メニューのドロップダウンリストをjavascriptでつくる
+- メニューのドロップダウンリストをjavascriptでつくる
 
-・モバイル向けスタイリングを作成する
+- モバイル向けスタイリングを作成する
 
-・レイアウトの変更をテストする
+- レイアウトの変更をテストする
 
-・ユーザー登録時にログインするようにする
+- ユーザー登録時にログインするようにする
 
-・ログアウト機能をつくる
+- ログアウト機能をつくる
 
-・それぞれのテストを作成
+- それぞれのテストを作成
 
-・第8章終了。ここまでをpush
+- 第8章終了。ここまでをpush
 
 </div></details>
 
 <details><summary>第9章</summary><div>
 
-## 第 9 章
+## 第 9 章　発展的なログイン機構
+
+- 永続cookieを使って、ブラウザを再起動した後でもすぐにログインできるようにする。
+
+- Remember me 機能を実装する
+
+- Usersモデルに`remember_digest`属性を追加する
+
+```
+$ rails g migration add_remember_digest_to_users remember_digest:string
+```
+
+- 記憶トークンの生成に`urlsafe_base64`メソッドを使う。Base64と呼ばれる。
+
+- Base64は、長さ22のランダムな文字列を返す。これを記憶トークンとして使用する。
+
+- rememberメソッドを作成する。これにより、ユーザーの記憶トークンを生成し、データベースに保存する。
+
+- 今のままではユーザーがログアウトしてもcookieが残ってしまいログアウトできないので、ユーザーを忘れるためのメソッドを定義する。
+
+- Remember me チェックボックスを実装する
+
+- HTMLとCSSのを先に編集してチェックボックスを表示
+
+- チェックボックスがオンのときはユーザーを記憶し、オフのときはユーザーを記憶しないようにする
+
+- Remember me のテストを作成する
+
+- テストがされているかいないかの判定テクニックとして、コードの途中に`raise`を仕込んでエラーを発生させるようにすると、テストがされていればテスト失敗になり、テストが作成されていなければテストがパスされてしまう。
+
+- `SessionsHelperTest.rb`を作成して、永続的セッションのテストを作成する
+
+- セッションリプレイ攻撃に対策する
+
+- ここまでで、永続セッションの実装が完了。ここまでをpush
+
+</div></details>
+
+<details><summary>第10章</summary><div>
+
+## 第 10 章　ユーザーの更新・表示・削除
+
+- この章で作る機能は、ユーザー情報を編集する機能、ユーザーの一覧を表示する機能、ユーザーを削除する機能
+
+- ユーザーの情報を編集できるのは、そのユーザーのみにする
+
+- ユーザーを削除できるのは、新たに作成する管理ユーザーという特権クラスのみにする
+
+- 最初に、ユーザー情報の編集フォームを作成する。`edit`アクションと、`edit`ビューを作成する。
+
+- ヘッダーにユーザー設定ページへのリンクを設置
+
+- 新たに`_form.html.erb`を作成し、新規登録ページと編集ページをリファクタリング
+
+- 編集に使う`update`メソッドで、`new`メソッドでも使用した`private`の`user_params`を使う
+
+- ユーザー情報の編集が失敗した時の場合に対するテストを作成する
+
+- ユーザー編集が成功した時の場合に対するテストを作成する
+
+- 今のままでは誰でも編集できる状態なので、認可のシステムを実装する
+
+- ログインしていないユーザーが本来アクセスできないページにアクセスしようとしたときにメッセージを表示させ、ルートページにリダイレクトさせる
+
+- `fixture`に別のユーザーを追加し、テストを作成する
+
+- ログインしていないユーザーが編集ページにアクセスしたときに、ログインページにリダイレクトさせる
+
+- フレンドリーフォワーディングを実装する
+
+- 実装のために、リクエストされたページをSessionヘルパーの`store_location`メソッドで保存する
+
+- すべてのユーザーを表示する機能のindexアクションを実装する
+
+- ユーザー一覧ページをつくる。showページはログインしていないユーザーからも見えるようにし、indexページはログイン済みのユーザーからしか見えないようにする。
+
+- ログイン時のルートページが正しくリンクが表示されているかのテストを作成（演習）
+
+- indexページに複数のユーザーを追加するために、gemで一気に追加する。
+
+- `faker gem`を導入
+
+- `db/seeds.rb`に、データベース上にサンプルユーザーを100人生成するコードを書く
+
+- ターミナルから生成を実行する`$ rails db:seed`
+
+- ページネーション機能を実装する
+
+- `will_paginate gem`と`bootstrap-will_paginate gem`を導入
+
+- ページネーションを動作させるには、Railsに指示するコードをindexビューに追加する
+
+- ユーザー一覧のテストを作成する
+
+- パーシャルのリファクタリングをする
+
+- ユーザーを削除する機能を実装する
+
+- まず、削除リンクを実装するが、削除を行う権限を持つadminクラスの管理ユーザーのクラスをつくる。roleと呼ぶ
+
+- admin属性をUserモデルに追加する。`$ rails g migration add_admin_to_users admin:boolean`
+
+- `toggle!`メソッドを使うと、adminのboolean属性を切り替えることができる
+
+- `seed.rb`に設定した最初のサンプルユーザーを管理者にするようコードを書き換える。`admin: true`を追加
+
+- Strong Parametersを使って、admin属性を編集されないようにする
+
+- admin属性の変更をweb経由で出来ないことを確認するテストを作成
+
+- destroyアクションを作成
+
+- `admin_user`フィルターを作って、管理者権限を持つユーザーのみがdestroyアクションを実行できるようにする
+
+- ユーザー削除のテストを作成する
+
+- ここまでをpush
+
+
+</div></details>
+
+<details><summary>第11章</summary><div>
+
+## 第 11 章　アカウントの有効化
+
+- この章で作る機能は、ユーザー登録時にメールを送信する機能、メール内のリンクをクリックしてアカウントを有効化する機能、アカウントが有効化されていないユーザーがログインできないようにする機能
+
+- ブランチを作成`account_activation`
+
+- AccountActivationsコントローラを作成`$ rails g controller AccountActivations`
+
+- `routs.rb`に`resources :account_activations, only: [:edit]`を追加
+
+- これで`edit_account_activation_url(token)`という名前付きルーティングが使えるようになる
+
+- Usersモデルに`activation_digest`,`activated`,`activated_at`属性を追加する
+
+- `activation`属性のデフォルト値はfalseにしておく
+
+- `user.rb`に`create_activation_digest`メソッドを追加する
+
+- `before_create`コールバックを使って、ユーザーが作成される前に`create_activation_digest`メソッドを実行するようにする
+
+- `seed.rb`と`fixture`を編集し、サンプルユーザーを最初から有効にしておく
+
+- `$ rails db:migrate:reset`,`$ rails db:seed`を実行して有効化されたサンプルユーザーを作成
+
+- アカウント有効のメール送信機能を実装する
+
+- 送信メールのテンプレートを作成する
+
+- 作成したテンプレートの実際の表示を確認するために、メールプレビューを利用する。
+
+- メールプレビューを使うために、`development.rb`に以下を追加する
+
+```
+42  host = "localhost:3000"
+43  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+```
+
+- `user_mailer_preview`を更新する
+
+- コメントアウトしているURLにアクセスすると、メールのプレビューを確認できる
+
+- 送信メールのテストを作成する
+
+- このテストがパスするためには、テストファイル内のドメイン名を正しく設定する必要がある。
+
+- `config/environments/test.rb`に`40  config.action_mailer.default_url_options = { host: 'example.com' }`を追加
+
+- チュートリアル内の見本の、正規表現を使ってメール本文内をテストする以下のコードでは、うまくキャッチしてくれなくてテストがパスしなかった。
+
+```
+assert_match user.name,               mail.body.encoded
+assert_match user.activation_token,   mail.body.encoded
+assert_match CGI.escape(user.email),  mail.body.encoded
+```
+
+- ので、以下のように書き換えたらパスした。
+
+```
+# mail.body.encodedはメールの本文のこと。assert_matchで正規表現を使って、
+# メール本文内にユーザー名、有効化トークン、エスケープ済みのメールアドレスが含まれているかどうかをテストする。
+# user.nameが本文に含まれている
+assert_match user.name,               mail.text_part.body.encoded
+assert_match user.name,               mail.html_part.body.encoded
+# user.activation_tokenが本文に含まれている
+assert_match user.activation_token,   mail.text_part.body.encoded
+assert_match user.activation_token,   mail.html_part.body.encoded
+# 特殊文字をエスケープしたuser.mailが本文に含まれている
+assert_match CGI.escape(user.email),  mail.text_part.body.encoded
+assert_match CGI.escape(user.email),  mail.html_part.body.encoded
+```
+
+- createアクションに、メーラーをアプリケーションで実際に使えるようコードを追加する
+
+- アカウントを有効化するメソッドを作るために、`authenticated?`メソッドを`send`メソッドを使って汎用的に作る
+
+- `account_activations_contoller`に`edit`アクションを実装する
+
+- `edit`アクションは、`params`ハッシュで渡されたメールアドレスに対応するユーザーを認証する
+
+- ログイン時、有効化が完了したユーザーだけがログインできるようにする
+
+- ユーザーの新規登録時に発行されるURLにアクセスすると、ユーザーのアカウントが有効化される
+
+- 有効化のテストを作成する。すでにあるテストに手を加えることで実装する
+
+- ユーザー有効化のコードをリファクタリングする
+
+- `activate`メソッドと`send_activation_email`をユーザーモデルに新しく定義し、コントローラで呼び出すようにする
+
+- 演習で変更したコードをテストする
+
+- ここまでをpush
+
+
+</div></details>
+
+<details><summary>第12章</summary><div>
+
+## 第 12 章　パスワードの再設定
+
+- この章では第11章と同様の流れで、パスワード再設定の機能を作る
+
+- トピックブランチを作成`password-reset`
+
+- パスワード再設定のためのリソースを作成する
+
+- `PasswordResets`コントローラを作成する。単体テストは生成せず、統合テストでカバーする
+
+```
+$ rails generate controller PasswordResets new edit --no-test-framework
+```
+
+- `config/routes.rb`に`resources :password_resets, only: [:new, :create, :edit, :update]`を追加する
+
+- ログイン画面にパスワードリセット用のリンクを追加する
+
+- usersモデルに`reset_digest`、`reset_sent_at`属性を追加する
+
+```
+$ rails g migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+```
+
+- パスワード再設定用のviewを作成
+
+- userモデルに`create_reset_digest`メソッドと`send_password_reset_email`メソッドを追加する
+
+- この時点でコントローラーは正常に動作するが、メールを送信するためには、メーラーメソッドを定義する必要がある
+
+- パスワード再設定用のメールを送信するためのメーラーを作成する
+
+- アカウント有効化のテストと同様に、メーラーメソッドのテストを作成する
+
+- パスワードを再設定する機能を実装する
+
+- パスワードを更新する`edit`と`update`アクションをつくる
+
+- `edit`アクションはフォームから新しいパスワードを送信する
+
+- `update`アクションはパスワードが有効かどうかを確認して、有効ならば更新する
+
+- パスワード再設定機能のテストを作成する
+
+```
+$ rails g integration_test password_resets
+```
+
+- ここまでをpush
+
+
+
+</div></details>
