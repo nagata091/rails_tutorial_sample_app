@@ -637,3 +637,59 @@ assert_match CGI.escape(user.email),  mail.html_part.body.encoded
 
 
 </div></details>
+
+<details><summary>第12章</summary><div>
+
+## 第 12 章　パスワードの再設定
+
+- この章では第11章と同様の流れで、パスワード再設定の機能を作る
+
+- トピックブランチを作成`password-reset`
+
+- パスワード再設定のためのリソースを作成する
+
+- `PasswordResets`コントローラを作成する。単体テストは生成せず、統合テストでカバーする
+
+```
+$ rails generate controller PasswordResets new edit --no-test-framework
+```
+
+- `config/routes.rb`に`resources :password_resets, only: [:new, :create, :edit, :update]`を追加する
+
+- ログイン画面にパスワードリセット用のリンクを追加する
+
+- usersモデルに`reset_digest`、`reset_sent_at`属性を追加する
+
+```
+$ rails g migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+```
+
+- パスワード再設定用のviewを作成
+
+- userモデルに`create_reset_digest`メソッドと`send_password_reset_email`メソッドを追加する
+
+- この時点でコントローラーは正常に動作するが、メールを送信するためには、メーラーメソッドを定義する必要がある
+
+- パスワード再設定用のメールを送信するためのメーラーを作成する
+
+- アカウント有効化のテストと同様に、メーラーメソッドのテストを作成する
+
+- パスワードを再設定する機能を実装する
+
+- パスワードを更新する`edit`と`update`アクションをつくる
+
+- `edit`アクションはフォームから新しいパスワードを送信する
+
+- `update`アクションはパスワードが有効かどうかを確認して、有効ならば更新する
+
+- パスワード再設定機能のテストを作成する
+
+```
+$ rails g integration_test password_resets
+```
+
+- ここまでをpush
+
+
+
+</div></details>

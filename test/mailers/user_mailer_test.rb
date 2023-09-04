@@ -22,4 +22,21 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match CGI.escape(user.email),  mail.text_part.body.encoded
     assert_match CGI.escape(user.email),  mail.html_part.body.encoded
   end
+
+  test "パスワード再設定のメール送信のテスト" do
+    # userにfixtureユーザーを設定
+    user = users(:michael)
+    # fixtureユーザーに再設定トークンを付与
+    user.reset_token = User.new_token
+    mail = UserMailer.password_reset(user)
+    assert_equal "パスワードを再設定",       mail.subject
+    assert_equal [user.email],            mail.to
+    assert_equal ["noreply@example.com"], mail.from
+    # user.reset_tokenが本文に含まれている
+    assert_match user.reset_token,        mail.text_part.body.encoded
+    assert_match user.reset_token,        mail.html_part.body.encoded
+    # 特殊文字をエスケープしたuser.mailが本文に含まれている
+    assert_match CGI.escape(user.email),  mail.text_part.body.encoded
+    assert_match CGI.escape(user.email),  mail.html_part.body.encoded
+  end
 end

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   # before_saveは、モデルが保存される直前に実行されるコールバック
   before_save :downcase_email
   # bofore_createは、モデルが作成される直前に実行されるコールバック
@@ -71,6 +71,25 @@ class User < ApplicationRecord
   def send_activation_email
     # ユーザー登録と同時にアカウントを有効化するメールを送信する
     UserMailer.account_activation(self).deliver_now
+  end
+
+  # パスワード再設定の属性を設定するメソッド
+  def create_reset_digest
+    # 22の長さのランダムな文字列を生成し、トークンとして返す
+    self.reset_token = User.new_token
+    # トークンをハッシュ化し、データベースのreset_digest属性に代入する
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  # パスワード再設定用のメールを送信するメソッド
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  # パスワード再設定の期限が切れている場合はtrueを返すメソッド
+  def password_reset_expired?
+    # パスワード再設定メールの送信時刻が、現在時刻より2時間以上前の場合はtrueを返す
+    reset_sent_at < 2.hours.ago
   end
 
   private
