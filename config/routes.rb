@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   # AccountActivationsコントローラで使用するeditアクションのみを有効にする
   resources :account_activations, only: [:edit]
+
+  # PasswordResetsコントローラで使用するnew, create, edit, updateアクションのみを有効にする
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
